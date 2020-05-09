@@ -1,13 +1,13 @@
 # ring-mqtt
-This script leverages the excellent [ring-client-api](https://github.com/dgreif/ring) to provide a bridge between MQTT and suppoted Ring devices such as alarm control panel, lights and cameras ([full list of supported devices and features](#current-features)).  It also provides support for Home Assistant style MQTT discovery which allows for simple Home Assistant integration with minimal configuration (assuming MQTT is already configured), including an optional [Hass.io Addon](https://github.com/tsightler/ring-mqtt-hassio-addon) for users of that platform.  It can also be used with any other tool capable of working with MQTT as it provides consistent topic naming based on location/device ID.
+This script leverages the excellent [ring-client-api](https://github.com/dgreif/ring) to provide a bridge between MQTT and suppoted Ring devices such as alarm control panel, lights and cameras ([full list of supported devices and features](#current-features)).  It also provides support for Home Assistant style MQTT discovery which allows for simple Home Assistant integration with minimal configuration (assuming MQTT is already configured), including an optional [Hass.io Addon](https://github.com/xversial/ring-mqtt-hassio-addon) for users of that platform.  It can also be used with any other tool capable of working with MQTT as it provides consistent topic naming based on location/device ID.
 
 ## !!! Important note regarding Hass.io !!!
-Due to the renaming of this project on Feb 20th, 2020, and the complete code refactor, old Hass.io addons developed for ring-alarm-mqtt will no longer work with this project.  As part of this release I have published a new [Hass.io addon](https://github.com/tsightler/ring-mqtt-hassio-addon) which I will attempt to support going forward.  Please migrate to it as soon as reasonable and report any issues with Hass.io there.
+Due to the renaming of this project on Feb 20th, 2020, and the complete code refactor, old Hass.io addons developed for ring-alarm-mqtt will no longer work with this project.  As part of this release I have published a new [Hass.io addon](https://github.com/xversial/ring-mqtt-hassio-addon) which I will attempt to support going forward.  Please migrate to it as soon as reasonable and report any issues with Hass.io there.
 
 ## Standard Installation (Linux)
 Make sure Node.js (tested with 10.16.x and higher) is installed on your system and then clone this repo:
 
-`git clone https://github.com/tsightler/ring-mqtt.git`
+`git clone https://github.com/xversial/ring-mqtt.git`
 
 Change to the ring-mqtt directory and run:
 
@@ -31,13 +31,13 @@ systemctl start ring-mqtt
 Ring-mqtt is now on Docker Hub!  While you're still welcome to build your own image from the Dockerfile you can now install and update by pulling directly from Docker Hub:
 
 ```
-docker pull tsightler/ring-mqtt
+docker pull xversial/ring-mqtt
 ```
 
 Or just run directly (Docker will automatically pull the image if it doesn't exist locally):
 
 ```
-docker run --rm -e "MQTTHOST={host name}" -e "MQTTPORT={host port}" -e "MQTTRINGTOPIC={ring topic}" -e "MQTTHASSTOPIC={hass topic}" -e "MQTTUSER={mqtt user}" -e "MQTTPASSWORD={mqtt pw}" -e "RINGTOKEN={ring refreshToken}" -e "ENABLECAMERAS={true-or-false}" -e "RINGLOCATIONIDS={comma-separated location IDs}" tsightler/ring-mqtt
+docker run --rm -e "MQTTHOST={host name}" -e "MQTTPORT={host port}" -e "MQTTRINGTOPIC={ring topic}" -e "MQTTHASSTOPIC={hass topic}" -e "MQTTUSER={mqtt user}" -e "MQTTPASSWORD={mqtt pw}" -e "RINGTOKEN={ring refreshToken}" -e "ENABLECAMERAS={true-or-false}" -e "RINGLOCATIONIDS={comma-separated location IDs}" xversial/ring-mqtt
 ```
 Note that only **RINGTOKEN** is technically required but in practice at least **MQTTHOST** will likely be required (unless you use the host network option in "docker run" command).  **MQTTUSER/MQTTPASSWORD** will be required if the MQTT broker does not accept anonymous connections.  Default values for the environment values if they are not defined are as follows:
 
@@ -64,7 +64,7 @@ node node_modules/ring-client-api/ring-auth-cli.js
 
    If you are using the Docker, you can execute:
 ```
-docker run -it --rm --entrypoint node_modules/ring-client-api/ring-auth-cli.js tsightler/ring-mqtt
+docker run -it --rm --entrypoint node_modules/ring-client-api/ring-auth-cli.js xversial/ring-mqtt
 ```
 For more details please check the [Two Factor Auth](https://github.com/dgreif/ring/wiki/Two-Factor-Auth) documentation from the ring client API.
 

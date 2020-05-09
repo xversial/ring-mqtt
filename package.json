@@ -23,8 +23,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/tsightler/ring-mqtt.git"
+    "url": "git://github.com/xversial/ring-mqtt.git"
   },
-  "author": "Tom Sightler (tsightler@gmail.com)",
+  "author": "Brandon Xversial (xversial@vionox.com)",
   "license": "MIT"
 }
